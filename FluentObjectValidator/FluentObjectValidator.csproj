@@ -10,10 +10,11 @@
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>fluent_object_validator_key.pfx</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Copyright />
+    <Copyright>Copyright (c) 2018 Roman Vovk</Copyright>
     <RepositoryUrl>https://github.com/wolf8196/FluentObjectValidator</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/wolf8196/FluentObjectValidator/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/wolf8196/FluentObjectValidator</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>
