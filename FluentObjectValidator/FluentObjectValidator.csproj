@@ -3,14 +3,17 @@
     <TargetFrameworks>net40;net45;netstandard1.0</TargetFrameworks>
     <Authors>Roman Vovk</Authors>
     <Company />
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>fluent validator validation</PackageTags>
-    <Description></Description>
+    <Description>FluentObjectValidator is a small and simple validation library that provides fluent interface for rule configuration.</Description>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>fluent_object_validator_key.pfx</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright />
+    <RepositoryUrl>https://github.com/wolf8196/FluentObjectValidator</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/wolf8196/FluentObjectValidator/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wolf8196/FluentObjectValidator</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>
