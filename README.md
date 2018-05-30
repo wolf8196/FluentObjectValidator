@@ -6,6 +6,9 @@ The library is meant to provide an alternative to the attribute-based validation
 ## Prerequisites
 The library targets .NET Standart 1.0, .NET 4.0, .NET 4.5
 
+## Installation
+The library is available as a [NuGet package](https://www.nuget.org/packages/FluentObjectValidator/).
+
 ## Getting Started
 Here are the steps that will help you configure the validation in your app.
 - [Choose the result](#choose-the-result)
