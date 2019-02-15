@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentObjectValidator</name>
+    </assembly>
+    <members>
+        <member name="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`2">
+            <summary>
+            Provides functionality for adding validation rules.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TSelectorResult">The type of the selector result.</typeparam>
+        </member>
+        <member name="M:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`2.HasRule(System.Func{`1,System.Boolean})">
+            <summary>
+            Adds a new validation rule defined by <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate">Predicate that defines the validation rule.</param>
+            <returns>The same <see cref="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`2"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`3">
+            <summary>
+            Provides functionality for adding validation rules.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TSelectorResult">The type of the selector result.</typeparam>
+            <typeparam name="TError">The type of the validation error.</typeparam>
+        </member>
+        <member name="M:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`3.HasRule(System.Func{`1,System.Boolean},System.Func{`2},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule.
+            </summary>
+            <param name="predicate">Predicate that defines the validation rule.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/>.</param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`3"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:FluentObjectValidator.Exceptions.ConfigurationNotFoundException">
+            <summary>
+            The exception that is thrown when there is not configuration for an object under validation.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:FluentObjectValidator.Exceptions.ConfigurationNotFoundException.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentObjectValidator.Exceptions.ConfigurationNotFoundException"/> class.
+            </summary>
+            <param name="type">The type of the object under validation.</param>
+        </member>
+        <member name="T:FluentObjectValidator.IValidator">
+            <summary>
+            Defines a generalized method to validate an object.
+            </summary>
+        </member>
+        <member name="M:FluentObjectValidator.IValidator.Validate``1(``0)">
+            <summary>
+            Validates the specified target object.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <returns>
+              <c>true</c> if the validation passed; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:FluentObjectValidator.IValidator`1">
+            <summary>
+            Defines a generalized method to validate an object.
+            </summary>
+            <typeparam name="TError">The type of the validation error.</typeparam>
+        </member>
+        <member name="M:FluentObjectValidator.IValidator`1.Validate``1(``0)">
+            <summary>
+            Validates the specified target object.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <returns>The result of the validation with errors of type <typeparamref name="TError"/></returns>
+        </member>
+        <member name="T:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`1">
+            <summary>
+            Provides functionality for configuring validation rules for objects of type <typeparamref name="TObject"/>.
+            </summary>
+            <typeparam name="TObject">The type of objects the configuration is responsible for.</typeparam>
+        </member>
+        <member name="M:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`1.Object">
+            <summary>
+            Starts a process of adding rules to the object under validation.
+            </summary>
+            <returns>Rule builder for the object under validation.</returns>
+            <remarks>Shortcut for the <c>Property(x => x)</c> call.</remarks>
+        </member>
+        <member name="M:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`1.Property``1(System.Func{`0,``0})">
+            <summary>
+            Starts a process of adding rules to the specified property.
+            </summary>
+            <typeparam name="TSelectorResult">The type of the selected property.</typeparam>
+            <param name="selector">The property selector.</param>
+            <returns>Rule builder for the selected property.</returns>
+        </member>
+        <member name="T:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`2">
+            <summary>
+            Provides functionality for configuring validation rules for objects of type <typeparamref name="TObject"/>.
+            </summary>
+            <typeparam name="TObject">The type of objects the configuration is responsible for.</typeparam>
+            <typeparam name="TError">The type of the validation error.</typeparam>
+        </member>
+        <member name="M:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`2.Object">
+            <summary>
+            Starts a process of adding rules to the object under validation.
+            </summary>
+            <returns>Rule builder for the object under validation.</returns>
+            <remarks>Shortcut for the <c>Property(x => x)</c> call.</remarks>
+        </member>
+        <member name="M:FluentObjectValidator.ModelConfiguration.ValidationConfiguration`2.Property``1(System.Func{`0,``0})">
+            <summary>
+            Starts a process of adding rules to the specified property.
+            </summary>
+            <typeparam name="TSelectorResult">The type of the selected property.</typeparam>
+            <param name="selector">The property selector.</param>
+            <returns>Rule builder for the selected property.</returns>
+        </member>
+        <member name="T:FluentObjectValidator.RuleExtensions.RequirableExtentions">
+            <summary>
+            Provides extension methods for defining a rule to check whether a selected property does not equal to its default value.
+            </summary>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.RequirableExtentions.IsRequired``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,``1})">
+            <summary>
+            Provides functionality for defining a rule to check whether a selected property of type <typeparamref name="TSelectorResult"/> does not equal to its default value.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TSelectorResult">The type of the selector result.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <returns>The same <see cref="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`2"/> instance so that multiple calls can be chained.</returns>
+            <remarks>Rule uses default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> to check for equality with the default value of type <typeparamref name="TSelectorResult"/>.</remarks>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.RequirableExtentions.IsRequired``3(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,``1,``2},System.Func{``2},System.Boolean)">
+            <summary>
+            Provides functionality for defining a rule to check whether a selected property of type <typeparamref name="TSelectorResult"/> does not equal to its default value.
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TSelectorResult">The type of the selector result.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for current object if it does not pass the rule.</param>
+            <returns>The same <see cref="T:FluentObjectValidator.Builders.RuleBuilders.RuleBuilder`3"/> instance so that multiple calls can be chained.</returns>
+            <remarks>
+            Rule uses default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> to check for equality with the default value of type <typeparamref name="TSelectorResult"/>.
+            Stops the validation for current selector if the object does not pass this rule.
+            </remarks>
+        </member>
+        <member name="T:FluentObjectValidator.RuleExtensions.StringRuleExtentions">
+            <summary>
+            Provides extension methods for defining type <see cref="T:System.String"/> specific validation rules.
+            </summary>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.IsRequired``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String})">
+            <summary>
+            Adds a new validation rule to check whether a string is not null or empty.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+            <remarks>Does not allow empty strings.</remarks>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.IsRequired``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string is not null or empty.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="allowEmptyString">Specifies whether to allow empty strings.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasMinLength``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.Int32)">
+            <summary>
+            Adds a new validation rule to check whether a string length is not less that the specified <paramref name="length"/>.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="length">Minimal length of the string.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasMaxLength``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.Int32)">
+            <summary>
+            Adds a new validation rule to check whether a string length is not greater that the specified <paramref name="length"/>.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="length">Maximal length of the string.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasLengthInRange``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.Int32,System.Int32)">
+            <summary>
+            Adds a new validation rule to check whether a string length is in the specified range.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="min">Minimal length of the string.</param>
+            <param name="max">Maximal length of the string.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.MatchesRegex``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.String)">
+            <summary>
+            Adds a new validation rule to check whether a string matches the specified pattern.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="pattern">The pattern.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.MatchesRegex``1(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String},System.Text.RegularExpressions.Regex)">
+            <summary>
+            Adds a new validation rule to check whether a string matches the specified regular expression.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="regex">The regular expression.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.IsRequired``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Func{``1},System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string is not null or empty.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+            <remarks>
+            Does not allow empty strings.
+            Stops the validation for current selector if the object does not pass this rule.
+            </remarks>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.IsRequired``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Boolean,System.Func{``1},System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string is not null or empty.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="allowEmptyString">Specifies whether to allow empty strings.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+            <remarks>
+            Stops the validation for current selector if the object does not pass this rule.
+            </remarks>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasMinLength``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Int32,System.Func{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string length is not less that the specified <paramref name="length"/>.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="length">Minimal length of the string.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasMaxLength``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Int32,System.Func{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string length is not greater that the specified <paramref name="length"/>.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="length">Maximal length of the string.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.HasLengthInRange``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Int32,System.Int32,System.Func{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string length is in the specified range.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="min">Minimal length of the string.</param>
+            <param name="max">Maximal length of the string.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.MatchesRegex``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.String,System.Func{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string matches the specified pattern.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:FluentObjectValidator.RuleExtensions.StringRuleExtentions.MatchesRegex``2(FluentObjectValidator.Builders.RuleBuilders.RuleBuilder{``0,System.String,``1},System.Text.RegularExpressions.Regex,System.Func{``1},System.Boolean,System.Boolean)">
+            <summary>
+            Adds a new validation rule to check whether a string matches the specified regular expression.
+            </summary>
+            <typeparam name="TObject">The type of the object under validation.</typeparam>
+            <typeparam name="TError">The type of the error.</typeparam>
+            <param name="ruleBuilder">Current rule builder to add the rule to.</param>
+            <param name="regex">The regular expression.</param>
+            <param name="errorCreator">Function to create new objects of type <typeparamref name="TError"/></param>
+            <param name="stopValidationOnError">Specifies whether to stop the validation for current selector if it does not pass the rule.</param>
+            <param name="terminateValidationOnError">Specifies whether to stop the validation for the whole current object if it does not pass the rule.</param>
+            <returns>The same <see cref="!:RuleBuilder&lt;TObject, string, TError&gt;"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:FluentObjectValidator.ValidationResult`1">
+            <summary>
+            Represents the result of the validation.
+            </summary>
+            <typeparam name="TError">The type of the validation error.</typeparam>
+        </member>
+        <member name="P:FluentObjectValidator.ValidationResult`1.IsValid">
+            <summary>
+            Gets a value indicating whether the validation passed.
+            </summary>
+        </member>
+        <member name="P:FluentObjectValidator.ValidationResult`1.Errors">
+            <summary>
+            Gets a collection containing the errors of the validation.
+            </summary>
+        </member>
+        <member name="T:FluentObjectValidator.Validator">
+            <summary>
+            Provides validation functionality for configured types
+            </summary>
+            <seealso cref="T:FluentObjectValidator.IValidator" />
+        </member>
+        <member name="M:FluentObjectValidator.Validator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentObjectValidator.Validator"/> class.
+            </summary>
+        </member>
+        <member name="M:FluentObjectValidator.Validator.Validate``1(``0)">
+            <summary>
+            Validates the specified target object.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <returns>
+              <c>true</c> if the validation passed; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:FluentObjectValidator.Exceptions.ConfigurationNotFoundException">
+            Thrown when no configuration was found for type <typeparamref name="TObject"/>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when object under validation is null.
+            </exception>
+        </member>
+        <member name="M:FluentObjectValidator.Validator.AddConfiguration``1(FluentObjectValidator.ModelConfiguration.ValidationConfiguration{``0})">
+            <summary>
+            Adds the specified validation configuration.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="configuration">The validation configuration.</param>
+        </member>
+        <member name="T:FluentObjectValidator.Validator`1">
+            <summary>
+            Provides validation functionality for configured types
+            </summary>
+            <typeparam name="TError">The type of the validation error.</typeparam>
+            <seealso cref="T:FluentObjectValidator.IValidator`1" />
+        </member>
+        <member name="M:FluentObjectValidator.Validator`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:FluentObjectValidator.Validator`1"/> class.
+            </summary>
+        </member>
+        <member name="M:FluentObjectValidator.Validator`1.Validate``1(``0)">
+            <summary>
+            Validates the specified target object.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <returns>
+            The result of the validation with errors of type <typeparamref name="TError" />
+            </returns>
+            <exception cref="T:FluentObjectValidator.Exceptions.ConfigurationNotFoundException">
+            Thrown when no configuration was found for type <typeparamref name="TObject"/>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown when object under validation is null.
+            </exception>
+        </member>
+        <member name="M:FluentObjectValidator.Validator`1.AddConfiguration``1(FluentObjectValidator.ModelConfiguration.ValidationConfiguration{``0,`0})">
+            <summary>
+            Adds the specified validation configuration.
+            </summary>
+            <typeparam name="TObject">The type of the target object.</typeparam>
+            <param name="configuration">The validation configuration.</param>
+        </member>
+    </members>
+</doc>
